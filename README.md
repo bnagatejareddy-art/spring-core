@@ -13,7 +13,7 @@ This project provides practical examples of Spring Core framework features inclu
 
 ## Prerequisites
 
-- Java 11 or higher
+- Java 17 or higher
 - Maven 3.6 or higher
 
 ## Project Structure

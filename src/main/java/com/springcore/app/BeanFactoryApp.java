@@ -1,20 +1,19 @@
 package com.springcore.app;
 
 import com.springcore.di.ConstructorInjectionExample;
-import com.springcore.di.SMSService;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.core.io.ClassPathResource;
 
-@SuppressWarnings("deprecation")
 public class BeanFactoryApp {
 
     public static void main(String[] args) {
         System.out.println("=== BeanFactory Example ===\n");
 
-        // Create BeanFactory from XML
-        BeanFactory beanFactory = new XmlBeanFactory(
-            new ClassPathResource("applicationContext.xml"));
+        // Create BeanFactory from XML using DefaultListableBeanFactory
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
+        reader.loadBeanDefinitions(new ClassPathResource("applicationContext.xml"));
 
         System.out.println("BeanFactory created (lazy initialization)\n");
 
