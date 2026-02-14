@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Enable annotation-based configuration -->
+    <context:annotation-config/>
+
+    <!-- Message Service Implementation -->
+    <bean id="smsService" class="com.springcore.di.SMSService"/>
+
+    <!-- Constructor Injection Example -->
+    <bean id="constructorInjection" class="com.springcore.di.ConstructorInjectionExample">
+        <constructor-arg ref="smsService"/>
+    </bean>
+
+    <!-- Setter Injection Example -->
+    <bean id="setterInjection" class="com.springcore.di.SetterInjectionExample">
+        <property name="messageService" ref="smsService"/>
+    </bean>
+
+    <!-- Bean Lifecycle Example -->
+    <bean id="beanLifecycle" class="com.springcore.lifecycle.BeanLifecycleExample"
+          init-method="customInit" destroy-method="customDestroy">
+        <property name="message" value="Hello from XML Config"/>
+    </bean>
+
+    <!-- Singleton Scope (default) -->
+    <bean id="singletonBean" class="com.springcore.scopes.SingletonBean" scope="singleton"/>
+
+    <!-- Prototype Scope -->
+    <bean id="prototypeBean" class="com.springcore.scopes.PrototypeBean" scope="prototype"/>
+
+</beans>
